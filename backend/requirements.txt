@@ -4,7 +4,7 @@ python-multipart==0.0.6
 SQLAlchemy==2.0.20
 psycopg2-binary==2.9.7
 python-dotenv==1.0.0
-mediapipe==0.10.3
+mediapipe>=0.10.14
 opencv-python==4.8.0.76
 numpy==1.25.2
 openai==0.28.0
