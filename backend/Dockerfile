@@ -2,7 +2,7 @@ FROM python:3.10-slim
 
 # MediaPipe 및 OpenCV 구동에 필수적인 C++ 의존성 라이브러리(libGL) 설치
 RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
