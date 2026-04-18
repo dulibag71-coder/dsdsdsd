@@ -2,7 +2,7 @@ import cv2
 import json
 import mediapipe as mp
 from sqlalchemy.orm import Session
-from .. import models
+import models
 
 mp_pose = mp.solutions.pose
 

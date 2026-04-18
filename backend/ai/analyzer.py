@@ -2,7 +2,7 @@ import json
 import math
 import numpy as np
 from sqlalchemy.orm import Session
-from .. import models
+import models
 
 # ==========================================
 # 0. MediaPipe 주요 관절 인덱스 및 V2 전처리 로직 일부

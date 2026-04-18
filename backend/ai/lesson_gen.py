@@ -2,7 +2,7 @@ import os
 import json
 import openai
 from sqlalchemy.orm import Session
-from .. import models
+import models
 
 from fastapi import HTTPException
 
