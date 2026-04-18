@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: golf-ai-backend
+    env: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        sync: false # 유저는 이 값을 Render 대시보드나 Github Secret에 수동으로 기입해야 함
+      - key: OPENROUTER_API_KEY
+        sync: false

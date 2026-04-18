@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-// 로컬 환경에서 테스트 시 자신의 컴퓨터 로컬 IP 주소로 변경하세요.
-// 예: "http://192.168.0.x:8000" (안드로이드/iOS 에뮬레이터 또는 실기기용)
-const API_BASE_URL = 'http://127.0.0.1:8000';
+// 로컬 환경에서 테스트 시 .env 파일에 EXPO_PUBLIC_API_URL=http://나의아이피:8000 을 설정하세요.
+// 클라우드 출시 후에는 Render.com에서 받은 주소(예: https://golf-ai-backend.onrender.com)를 넣으시면 됩니다.
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://127.0.0.1:8000';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
