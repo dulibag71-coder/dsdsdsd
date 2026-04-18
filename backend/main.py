@@ -5,8 +5,8 @@ from sqlalchemy.orm import Session
 from pathlib import Path
 import json
 
-from . import models, schemas
-from .database import engine, get_db
+import models, schemas
+from database import engine, get_db
 
 # 로컬 테스트 환경을 위해 Base 삭제를 주석 처리했습니다. Base.metadata.create_all은 서버 시작시 테이블을 동기화합니다.
 models.Base.metadata.create_all(bind=engine)
@@ -54,7 +54,7 @@ async def upload_video(user_id: int, file: UploadFile = File(...), db: Session =
     db.refresh(new_swing)
 
     # TODO: 비동기적으로 AI 포즈 추출 파이프라인 트리거 (현재는 간단히 더미 파이프라인 호출)
-    from .ai.pose_extractor import process_video
+    from ai.pose_extractor import process_video
     process_video(db, new_swing.id, str(file_path))
 
     return new_swing
@@ -73,7 +73,7 @@ def run_analysis(swing_id: int, db: Session = Depends(get_db)):
     if not poses_exist:
         raise HTTPException(status_code=400, detail="Pose data not found for this swing")
     
-    from .ai.analyzer import analyze_swing
+    from ai.analyzer import analyze_swing
     analysis_result = analyze_swing(db, swing_id)
     return analysis_result
 
@@ -84,6 +84,6 @@ def get_lesson(swing_id: int, db: Session = Depends(get_db)):
     if not analysis:
         raise HTTPException(status_code=400, detail="Analysis data not found. Please analyze first.")
 
-    from .ai.lesson_gen import generate_lesson
+    from ai.lesson_gen import generate_lesson
     lesson_obj = generate_lesson(db, swing_id, analysis.result_json)
     return lesson_obj
